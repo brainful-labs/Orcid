@@ -200,7 +200,7 @@ class Provider extends AbstractProvider
     public function getAccessToken($code)
     {
         $s = $this->scopes[0];
-        $data = "client_id={$this->clientId}&client_secret={$this->clientSecret}&grant_type=client_credentials&scope={$s}";
+        $data = "client_id={$this->clientId}&client_secret={$this->clientSecret}&grant_type=authorization_code&redirect_uri={$this->redirectUrl}&code=$code";
 
         $response = $this->getHttpClient()->post($this->getTokenUrl(), [
             RequestOptions::HEADERS => ['Accept' => 'application/json', 'Content-Type' => 'application/x-www-form-urlencoded'],
